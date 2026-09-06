@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             /* GO TO HOME */
 
-            window.location.href = "/index.html";
+            window.location.href = "index.html";
 
         });
 
