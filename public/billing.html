@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SHOPIFY | Billing</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Poppins", sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff3f7,
+                    #f7efff,
+                    #fff9ef
+                );
+
+            color: #333;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            background: white;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.08);
+
+        }
+
+
+        .logo {
+
+            font-family:
+                "Playfair Display", serif;
+
+            font-size: 29px;
+
+            font-weight: 700;
+
+        }
+
+
+        .logo span {
+
+            color: #d85c8a;
+
+        }
+
+
+        nav {
+
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+
+        }
+
+
+        nav a {
+
+            text-decoration: none;
+
+            color: #555;
+
+            font-size: 14px;
+
+        }
+
+
+        nav a:hover {
+
+            color: #d85c8a;
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .billing-page {
+
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: 45px auto;
+
+        }
+
+
+        .page-title {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .page-title h1 {
+
+            font-family:
+                "Playfair Display", serif;
+
+            font-size: 42px;
+
+        }
+
+
+        .page-title p {
+
+            color: #888;
+
+            margin-top: 8px;
+
+        }
+
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .billing-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 380px;
+
+            gap: 30px;
+
+            align-items: start;
+
+        }
+
+
+        .billing-card {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+
+        }
+
+
+        .billing-card h2 {
+
+            font-family:
+                "Playfair Display", serif;
+
+            font-size: 27px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+
+        }
+
+
+        .input-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .input-group label {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family:
+                "Poppins", sans-serif;
+
+            font-size: 13px;
+
+        }
+
+
+        .input-group textarea {
+
+            resize: vertical;
+
+            min-height: 90px;
+
+        }
+
+
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+
+            border-color: #d85c8a;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(216,92,138,0.08);
+
+        }
+
+
+        /* =========================
+           PAYMENT
+        ========================= */
+
+        .payment-title {
+
+            font-family:
+                "Playfair Display", serif;
+
+            font-size: 22px;
+
+            margin:
+                25px 0 15px;
+
+        }
+
+
+        .payment-option {
+
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+
+            cursor: pointer;
+
+        }
+
+
+        .payment-option:hover {
+
+            border-color: #d85c8a;
+
+        }
+
+
+        .payment-option label {
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+        }
+
+
+        .payment-option input {
+
+            margin-right: 10px;
+
+        }
+
+
+        /* =========================
+           ORDER SUMMARY
+        ========================= */
+
+        .summary {
+
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 25px;
+
+        }
+
+
+        .summary h2 {
+
+            font-family:
+                "Playfair Display", serif;
+
+            font-size: 27px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .summary-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #eee;
+
+            font-size: 13px;
+
+        }
+
+
+        .summary-item-name {
+
+            max-width: 210px;
+
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 15px;
+
+            color: #666;
+
+        }
+
+
+        .total {
+
+            border-top:
+                1px solid #ddd;
+
+            padding-top: 18px;
+
+            margin-top: 20px;
+
+            font-size: 20px;
+
+            font-weight: 600;
+
+            color: #222;
+
+        }
+
+
+        .place-order {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d85c8a,
+                    #b84f9a
+                );
+
+            color: white;
+
+            font-family:
+                "Poppins", sans-serif;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .place-order:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(216,92,138,0.3);
+
+        }
+
+
+        .back-cart {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #d85c8a;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================
+           EMPTY CART
+        ========================= */
+
+        .empty {
+
+            text-align: center;
+
+            background: white;
+
+            padding: 60px 20px;
+
+            border-radius: 20px;
+
+        }
+
+
+        .empty h2 {
+
+            font-family:
+                "Playfair Display", serif;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .empty a {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            background: #d85c8a;
+
+            color: white;
+
+            padding: 12px 25px;
+
+            border-radius: 25px;
+
+            text-decoration: none;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            margin-top: 60px;
+
+            background: #292329;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 850px) {
+
+            .billing-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .summary {
+
+                position: static;
+
+            }
+
+        }
+
+
+        @media(max-width: 550px) {
+
+            .billing-page {
+
+                width: 94%;
+
+            }
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+
+            }
+
+            header {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+            }
+
+            nav {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+            }
+
+            .page-title h1 {
+
+                font-size: 34px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- LOGIN PROTECTION -->
+
+<script>
+
+    const currentUser =
+        localStorage.getItem("currentUser");
+
+    const isLoggedIn =
+        localStorage.getItem("isLoggedIn");
+
+
+    if (
+        isLoggedIn !== "true" ||
+        !currentUser
+    ) {
+
+        window.location.href = "/login.html";
+
+    }
+
+</script>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+
+        SHOP<span>IFY</span>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/index.html">
+            Home
+        </a>
+
+        <a href="/products">
+            Products
+        </a>
+
+        <a href="/cart">
+            🛒 Cart
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="billing-page">
+
+
+    <div class="page-title">
+
+        <h1>
+            Checkout
+        </h1>
+
+        <p>
+            Complete your details to place your order
+        </p>
+
+    </div>
+
+
+    <div id="billingContainer"></div>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 SHOPIFY FASHION STORE
+    | All Rights Reserved
+
+</footer>
+
+
+<script>
+
+    /* =========================
+       USER
+    ========================= */
+
+    const userEmail =
+        localStorage.getItem("currentUser");
+
+    const userName =
+        localStorage.getItem("userName") || "";
+
+
+    const cartKey =
+        "cart_" + userEmail;
+
+
+    /* =========================
+       GET CART
+    ========================= */
+
+    function getCart() {
+
+        return JSON.parse(
+            localStorage.getItem(cartKey)
+        ) || [];
+
+    }
+
+
+    const cart = getCart();
+
+
+    /* =========================
+       CHECK EMPTY
+    ========================= */
+
+    if (cart.length === 0) {
+
+        document.getElementById(
+            "billingContainer"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                <h2>
+                    Your Cart is Empty
+                </h2>
+
+                <p>
+                    Add products before checkout.
+                </p>
+
+                <a href="/products">
+                    Continue Shopping
+                </a>
+
+            </div>
+
+        `;
+
+    }
+
+    else {
+
+        displayBilling();
+
+    }
+
+
+    /* =========================
+       DISPLAY BILLING
+    ========================= */
+
+    function displayBilling() {
+
+        let subtotal = 0;
+
+        cart.forEach(function(item) {
+
+            subtotal +=
+                Number(item.price) *
+                Number(item.quantity);
+
+        });
+
+
+        const delivery =
+            subtotal >= 999
+                ? 0
+                : 49;
+
+
+        const total =
+            subtotal + delivery;
+
+
+        let itemsHTML = "";
+
+
+        cart.forEach(function(item) {
+
+            itemsHTML += `
+
+                <div class="summary-item">
+
+                    <span class="summary-item-name">
+
+                        ${item.name}
+
+                        × ${item.quantity}
+
+                    </span>
+
+                    <strong>
+                        ₹${Number(item.price) *
+                           Number(item.quantity)}
+                    </strong>
+
+                </div>
+
+            `;
+
+        });
+
+
+        document.getElementById(
+            "billingContainer"
+        ).innerHTML = `
+
+            <div class="billing-layout">
+
+
+                <!-- CUSTOMER DETAILS -->
+
+                <div class="billing-card">
+
+                    <h2>
+                        Delivery Details
+                    </h2>
+
+
+                    <form id="billingForm">
+
+
+                        <div class="form-row">
+
+                            <div class="input-group">
+
+                                <label>
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="customerName"
+                                    value="${userName}"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label>
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="customerEmail"
+                                    value="${userEmail}"
+                                    readonly
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter phone number"
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Delivery Address
+                            </label>
+
+                            <textarea
+                                id="address"
+                                placeholder="House No., Street, Area"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div class="input-group">
+
+                                <label>
+                                    City
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="city"
+                                    placeholder="Enter city"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label>
+                                    Pincode
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="pincode"
+                                    placeholder="6 digit pincode"
+                                    pattern="[0-9]{6}"
+                                    maxlength="6"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PAYMENT -->
+
+                        <h3 class="payment-title">
+                            Payment Method
+                        </h3>
+
+
+                        <div class="payment-option">
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="payment"
+                                    value="Cash on Delivery"
+                                    checked
+                                >
+
+                                💵 Cash on Delivery
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="payment-option">
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="payment"
+                                    value="UPI"
+                                >
+
+                                📱 UPI
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="payment-option">
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="payment"
+                                    value="Card"
+                                >
+
+                                💳 Card
+
+                            </label>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="place-order"
+                        >
+                            PLACE ORDER
+                        </button>
+
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- ORDER SUMMARY -->
+
+                <div class="summary">
+
+                    <h2>
+                        Order Summary
+                    </h2>
+
+
+                    ${itemsHTML}
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span>
+                            ₹${subtotal}
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Delivery
+                        </span>
+
+                        <span>
+
+                            ${
+                                delivery === 0
+                                ? "FREE"
+                                : "₹" + delivery
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-row total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <span>
+                            ₹${total}
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="/cart"
+                        class="back-cart"
+                    >
+                        ← Back to Cart
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        `;
+
+
+        document
+            .getElementById("billingForm")
+            .addEventListener(
+                "submit",
+                placeOrder
+            );
+
+    }
+
+
+    /* =========================
+       PLACE ORDER
+    ========================= */
+
+    function placeOrder(event) {
+
+        event.preventDefault();
+
+
+        const customerName =
+            document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+
+        const phone =
+            document
+            .getElementById("phone")
+            .value
+            .trim();
+
+
+        const address =
+            document
+            .getElementById("address")
+            .value
+            .trim();
+
+
+        const city =
+            document
+            .getElementById("city")
+            .value
+            .trim();
+
+
+        const pincode =
+            document
+            .getElementById("pincode")
+            .value
+            .trim();
+
+
+        const payment =
+            document.querySelector(
+                'input[name="payment"]:checked'
+            ).value;
+
+
+        /* CALCULATE */
+
+        let subtotal = 0;
+
+
+        cart.forEach(function(item) {
+
+            subtotal +=
+                Number(item.price) *
+                Number(item.quantity);
+
+        });
+
+
+        const delivery =
+            subtotal >= 999
+                ? 0
+                : 49;
+
+
+        const total =
+            subtotal + delivery;
+
+
+        /* ORDER ID */
+
+        const orderId =
+            "ORD" +
+            Date.now();
+
+
+        /* ORDER OBJECT */
+
+        const order = {
+
+            orderId: orderId,
+
+            customerName:
+                customerName,
+
+            email:
+                userEmail,
+
+            phone:
+                phone,
+
+            address:
+                address,
+
+            city:
+                city,
+
+            pincode:
+                pincode,
+
+            payment:
+                payment,
+
+            subtotal:
+                subtotal,
+
+            delivery:
+                delivery,
+
+            total:
+                total,
+
+            status:
+                "Placed",
+
+            date:
+                new Date().toLocaleString(),
+
+            items:
+                cart.map(function(item) {
+
+                    return {
+
+                        id:
+                            item.id,
+
+                        name:
+                            item.name,
+
+                        category:
+                            item.category,
+
+                        price:
+                            Number(item.price),
+
+                        quantity:
+                            Number(item.quantity),
+
+                        total:
+                            Number(item.price) *
+                            Number(item.quantity)
+
+                    };
+
+                })
+
+        };
+
+
+        /* =========================
+           SAVE ORDER
+        ========================= */
+
+        let orders =
+            JSON.parse(
+                localStorage.getItem("orders")
+            ) || [];
+
+
+        orders.push(order);
+
+
+        localStorage.setItem(
+            "orders",
+            JSON.stringify(orders)
+        );
+
+
+        /* =========================
+           CLEAR USER CART
+        ========================= */
+
+        localStorage.setItem(
+            cartKey,
+            JSON.stringify([])
+        );
+
+
+        /* =========================
+           SAVE LAST ORDER
+        ========================= */
+
+        localStorage.setItem(
+            "lastOrder",
+            JSON.stringify(order)
+        );
+
+
+        /* =========================
+           SUCCESS
+        ========================= */
+
+        alert(
+            "Order placed successfully!\n\n" +
+            "Order ID: " + orderId +
+            "\nTotal: ₹" + total
+        );
+
+
+        window.location.href =
+            "/home";
+
+    }
+
+</script>
+
+</body>
+
+</html>

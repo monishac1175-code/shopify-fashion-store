@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SHOPIFY | Admin Dashboard</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="css/admin.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     ADMIN HEADER
+========================================= -->
+
+<header class="admin-header">
+
+    <div class="admin-logo">
+        SHOP<span>IFY</span>
+    </div>
+
+    <div class="admin-title">
+        ADMIN DASHBOARD
+    </div>
+
+    <button
+        class="admin-logout"
+        onclick="adminLogout()">
+        Logout
+    </button>
+
+</header>
+
+
+
+<!-- =========================================
+     ADMIN LAYOUT
+========================================= -->
+
+<div class="admin-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <h3>Management</h3>
+
+
+        <button
+            class="active"
+            data-section="overview"
+            onclick="showSection('overview')">
+
+            📊 Dashboard
+
+        </button>
+
+
+        <button
+            data-section="users"
+            onclick="showSection('users')">
+
+            👥 Users
+
+        </button>
+
+
+        <button
+            data-section="products"
+            onclick="showSection('products')">
+
+            🛍️ Products
+
+        </button>
+
+
+        <button
+            data-section="cartRecords"
+            onclick="showSection('cartRecords')">
+
+            🛒 Cart Records
+
+        </button>
+
+
+        <button
+            data-section="orders"
+            onclick="showSection('orders')">
+
+            📦 Orders
+
+        </button>
+
+
+        <button
+            data-section="sales"
+            onclick="showSection('sales')">
+
+            💰 Sales
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- =================================
+             DASHBOARD / OVERVIEW
+        ================================== -->
+
+        <section
+            id="overview"
+            class="admin-section active">
+
+            <h1>Dashboard</h1>
+
+            <p class="admin-subtitle">
+                Welcome to the SHOPIFY administration panel.
+            </p>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <h3>
+                        Registered Users
+                    </h3>
+
+                    <p id="totalUsers">
+                        0
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🛍️
+                    </div>
+
+                    <h3>
+                        Products
+                    </h3>
+
+                    <p id="totalProducts">
+                        0
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Orders
+                    </h3>
+
+                    <p id="totalOrders">
+                        0
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        Total Sales
+                    </h3>
+
+                    <p id="totalSales">
+                        ₹0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STORE INFORMATION -->
+
+            <div class="section-box">
+
+                <h2>
+                    Store Information
+                </h2>
+
+                <p>
+                    SHOPIFY Fashion Store Admin Panel
+                </p>
+
+                <br>
+
+                <p>
+                    From this dashboard you can monitor
+                    customers, products, carts, orders
+                    and sales.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             USERS
+        ================================== -->
+
+        <section
+            id="users"
+            class="admin-section">
+
+            <h1>
+                Registered Users
+            </h1>
+
+            <p class="admin-subtitle">
+                All customers who created an account.
+            </p>
+
+
+            <div class="section-box">
+
+
+                <input
+                    type="text"
+                    id="userSearch"
+                    class="search-box"
+                    placeholder="Search users..."
+                    onkeyup="searchUsers()">
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>#</th>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PRODUCTS
+        ================================== -->
+
+        <section
+            id="products"
+            class="admin-section">
+
+            <h1>
+                Products
+            </h1>
+
+            <p class="admin-subtitle">
+                Products available in the fashion store.
+            </p>
+
+
+            <div class="section-box">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>#</th>
+
+                                <th>Product</th>
+
+                                <th>Category</th>
+
+                                <th>Price</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="productsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             CART RECORDS
+        ================================== -->
+
+        <section
+            id="cartRecords"
+            class="admin-section">
+
+            <h1>
+                Customer Cart Records
+            </h1>
+
+            <p class="admin-subtitle">
+                Products currently present in customer carts.
+            </p>
+
+
+            <div class="section-box">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>#</th>
+
+                                <th>Customer</th>
+
+                                <th>Email</th>
+
+                                <th>Product</th>
+
+                                <th>Quantity</th>
+
+                                <th>Total</th>
+
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="cartTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             ORDERS
+        ================================== -->
+
+        <section
+            id="orders"
+            class="admin-section">
+
+            <h1>
+                Customer Orders
+            </h1>
+
+            <p class="admin-subtitle">
+                All orders placed by customers.
+            </p>
+
+
+            <div class="section-box">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Order ID</th>
+
+                                <th>Customer</th>
+
+                                <th>Email</th>
+
+                                <th>Total</th>
+
+                                <th>Payment</th>
+
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="ordersTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             SALES
+        ================================== -->
+
+        <section
+            id="sales"
+            class="admin-section">
+
+            <h1>
+                Sales
+            </h1>
+
+            <p class="admin-subtitle">
+                Sales information from completed orders.
+            </p>
+
+
+            <!-- SALES CARDS -->
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        Total Sales
+                    </h3>
+
+                    <p id="salesAmount">
+                        ₹0
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Total Orders
+                    </h3>
+
+                    <p id="salesOrders">
+                        0
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🛍️
+                    </div>
+
+                    <h3>
+                        Items Sold
+                    </h3>
+
+                    <p id="itemsSold">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SALES TABLE -->
+
+            <div class="section-box">
+
+                <h2>
+                    Order Sales
+                </h2>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Order ID
+                                </th>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Payment
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="salesTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================
+     ADMIN JAVASCRIPT
+========================================= -->
+
+<script src="js/admin.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SHOPIFY | Product Details</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="main-header">
+
+        <div class="logo">
+            SHOP<span>IFY</span>
+            <small>FASHION STORE</small>
+        </div>
+
+        <nav>
+            <a href="/home">Home</a>
+            <a href="/products">Products</a>
+            <a href="/cart">Cart 🛒</a>
+
+            <button onclick="logout()" class="logout-btn">
+                Logout
+            </button>
+        </nav>
+
+    </header>
+
+
+    <!-- PRODUCT DETAILS -->
+
+    <main class="details-page">
+
+        <div id="productDetails">
+
+            <!-- Product loaded by JavaScript -->
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            SHOP<span>IFY</span>
+        </div>
+
+        <p>
+            © 2026 SHOPIFY Fashion Store.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="js/products.js"></script>
+
+    <script>
+
+        function logout() {
+
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("userEmail");
+            localStorage.removeItem("userName");
+
+            window.location.href = "/login";
+
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const productData =
+                localStorage.getItem("selectedProduct");
+
+            const container =
+                document.getElementById("productDetails");
+
+
+            if (!productData) {
+
+                container.innerHTML = `
+
+                    <div class="product-not-found">
+
+                        <h2>Product Not Found</h2>
+
+                        <p>
+                            Please select a product from our collection.
+                        </p>
+
+                        <a href="/products" class="shop-button">
+                            BACK TO PRODUCTS
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const product =
+                JSON.parse(productData);
+
+
+            container.innerHTML = `
+
+                <div class="details-container">
+
+                    <!-- PRODUCT IMAGE -->
+
+                    <div class="details-image">
+
+                        ${
+                            product.sale
+                            ? `
+                                <span class="details-sale">
+                                    ${product.sale}
+                                </span>
+                            `
+                            : ""
+                        }
+
+                        <div class="details-emoji">
+                            ${product.image}
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRODUCT INFORMATION -->
+
+                    <div class="details-info">
+
+                        <p class="details-category">
+                            ${product.category}
+                        </p>
+
+                        <h1>
+                            ${product.name}
+                        </h1>
+
+                        <div class="details-rating">
+                            ⭐⭐⭐⭐⭐
+                            <span>
+                                4.8 / 5
+                            </span>
+                        </div>
+
+
+                        <div class="details-price">
+
+                            <strong>
+                                ₹${product.price.toLocaleString("en-IN")}
+                            </strong>
+
+                            ${
+                                product.oldPrice
+                                ? `
+                                    <del>
+                                        ₹${product.oldPrice.toLocaleString("en-IN")}
+                                    </del>
+                                `
+                                : ""
+                            }
+
+                        </div>
+
+
+                        <p class="details-description">
+
+                            Elevate your wardrobe with this
+                            beautiful ${product.name}.
+                            Designed for comfort, style and
+                            effortless elegance.
+
+                        </p>
+
+
+                        <!-- SIZE -->
+
+                        <div class="size-section">
+
+                            <h3>
+                                Select Size
+                            </h3>
+
+                            <div class="size-buttons">
+
+                                <button onclick="selectSize(this)">
+                                    XS
+                                </button>
+
+                                <button onclick="selectSize(this)">
+                                    S
+                                </button>
+
+                                <button onclick="selectSize(this)">
+                                    M
+                                </button>
+
+                                <button onclick="selectSize(this)">
+                                    L
+                                </button>
+
+                                <button onclick="selectSize(this)">
+                                    XL
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- QUANTITY -->
+
+                        <div class="quantity-section">
+
+                            <h3>
+                                Quantity
+                            </h3>
+
+                            <div class="quantity-control">
+
+                                <button onclick="changeQuantity(-1)">
+                                    −
+                                </button>
+
+                                <span id="quantity">
+                                    1
+                                </span>
+
+                                <button onclick="changeQuantity(1)">
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BUTTONS -->
+
+                        <div class="details-buttons">
+
+                            <button
+                                onclick="addProductToCart()"
+                                class="details-cart-btn">
+
+                                ADD TO CART
+
+                            </button>
+
+                            <button
+                                onclick="buyNow()"
+                                class="buy-now-btn">
+
+                                BUY NOW
+
+                            </button>
+
+                        </div>
+
+
+                        <a
+                            href="/products"
+                            class="back-products">
+
+                            ← Continue Shopping
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+
+        let selectedSize = "";
+        let quantity = 1;
+
+
+        function selectSize(button) {
+
+            document
+                .querySelectorAll(".size-buttons button")
+                .forEach(btn => {
+
+                    btn.classList.remove("selected");
+
+                });
+
+
+            button.classList.add("selected");
+
+            selectedSize =
+                button.textContent.trim();
+
+        }
+
+
+        function changeQuantity(value) {
+
+            quantity += value;
+
+            if (quantity < 1) {
+                quantity = 1;
+            }
+
+            if (quantity > 10) {
+                quantity = 10;
+            }
+
+
+            document.getElementById("quantity")
+                .textContent = quantity;
+
+        }
+
+
+        function addProductToCart() {
+
+            if (!selectedSize) {
+
+                alert("Please select a size.");
+
+                return;
+
+            }
+
+
+            const productData =
+                localStorage.getItem("selectedProduct");
+
+
+            if (!productData) {
+
+                alert("Product not found.");
+
+                return;
+
+            }
+
+
+            const product =
+                JSON.parse(productData);
+
+
+            let cart =
+                JSON.parse(
+                    localStorage.getItem("cart")
+                ) || [];
+
+
+            const cartItem =
+                cart.find(
+                    item =>
+                        item.id === product.id &&
+                        item.size === selectedSize
+                );
+
+
+            if (cartItem) {
+
+                cartItem.quantity += quantity;
+
+            } else {
+
+                cart.push({
+
+                    ...product,
+
+                    quantity: quantity,
+
+                    size: selectedSize
+
+                });
+
+            }
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            alert(
+                product.name +
+                " added to cart!"
+            );
+
+
+            window.location.href = "/cart";
+
+        }
+
+
+        function buyNow() {
+
+            if (!selectedSize) {
+
+                alert("Please select a size.");
+
+                return;
+
+            }
+
+
+            addProductToCart();
+
+        }
+
+    </script>
+
+</body>
+
+</html>

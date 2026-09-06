@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SHOPIFY | Collection</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* PAGE */
+
+        .products-page {
+            padding: 60px 7%;
+            background: #fffafc;
+            min-height: 100vh;
+        }
+
+
+        /* HEADING */
+
+        .products-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .products-heading p {
+            color: #c06a8c;
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        .products-heading h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+            margin: 10px 0;
+            color: #3b2730;
+        }
+
+        .products-heading span {
+            color: #777;
+            font-size: 15px;
+        }
+
+
+        /* SEARCH */
+
+        .product-search {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 45px;
+        }
+
+        .product-search input {
+            width: 450px;
+            padding: 15px 22px;
+            border-radius: 30px;
+            border: 1px solid #e5c8d3;
+            outline: none;
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            background: white;
+        }
+
+        .product-search input:focus {
+            border-color: #c06a8c;
+            box-shadow: 0 5px 20px rgba(192,106,140,0.15);
+        }
+
+
+        /* CATEGORY SECTION */
+
+        .category-section {
+            margin-bottom: 70px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #ead9df;
+            padding-bottom: 15px;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-title .icon {
+            font-size: 30px;
+        }
+
+        .category-title h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 32px;
+            color: #3b2730;
+            margin: 0;
+        }
+
+        .category-title p {
+            margin: 0;
+            color: #999;
+            font-size: 13px;
+        }
+
+
+        /* PRODUCT GRID */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+
+        /* PRODUCT CARD */
+
+        .product-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(70, 30, 50, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(70, 30, 50, 0.15);
+        }
+
+
+        /* PRODUCT IMAGE */
+
+        .product-image {
+            height: 280px;
+            background: linear-gradient(
+                135deg,
+                #fce9f0,
+                #f8dce7,
+                #eee3f5
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-emoji {
+            font-size: 100px;
+        }
+
+
+        /* SALE */
+
+        .sale-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #b84d72;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+
+        /* PRODUCT INFO */
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            text-transform: uppercase;
+            color: #c06a8c;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 7px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            color: #3b2730;
+            margin-bottom: 12px;
+            min-height: 42px;
+        }
+
+
+        /* PRICE */
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-price strong {
+            color: #b84d72;
+            font-size: 18px;
+        }
+
+        .product-price del {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+
+        /* BUTTONS */
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .product-actions button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Poppins", sans-serif;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .view-btn {
+            background: white;
+            color: #b84d72;
+            border: 1px solid #b84d72;
+        }
+
+        .view-btn:hover {
+            background: #b84d72;
+            color: white;
+        }
+
+        .cart-btn {
+            background: #b84d72;
+            color: white;
+            border: 1px solid #b84d72;
+        }
+
+        .cart-btn:hover {
+            background: #943d5c;
+        }
+
+
+        /* EMPTY */
+
+        .no-products {
+            text-align: center;
+            padding: 50px;
+            grid-column: 1 / -1;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1100px) {
+
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-heading h1 {
+                font-size: 38px;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-search input {
+                width: 100%;
+            }
+
+            .category-header {
+                display: block;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- LOGIN PROTECTION -->
+
+    <script>
+
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "/login.html";
+        }
+
+    </script>
+
+
+
+    <!-- HEADER -->
+
+    <header class="main-header">
+
+        <div class="logo">
+
+            SHOP<span>IFY</span>
+
+            <small>FASHION STORE</small>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/home.html">Home</a>
+
+            <a href="/products.html">Products</a>
+
+            <a href="/cart.html">🛒 Cart</a>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- PRODUCTS PAGE -->
+
+    <main class="products-page">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="products-heading">
+
+            <p>SHOP OUR COLLECTION</p>
+
+            <h1>Fashion For Every Mood</h1>
+
+            <span>
+                Discover styles made for you
+            </span>
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="product-search">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for tops, kurtis, dresses..."
+                oninput="searchProducts()">
+
+        </div>
+
+
+
+        <!-- ===============================
+             TOPS
+        ================================ -->
+
+        <section class="category-section">
+
+            <div class="category-header">
+
+                <div class="category-title">
+
+                    <div class="icon">👚</div>
+
+                    <div>
+
+                        <h2>Tops</h2>
+
+                        <p>
+                            Elegant everyday styles
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="topsGrid"
+                class="product-grid">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             KURTIS
+        ================================ -->
+
+        <section class="category-section">
+
+            <div class="category-header">
+
+                <div class="category-title">
+
+                    <div class="icon">🌸</div>
+
+                    <div>
+
+                        <h2>Kurtis</h2>
+
+                        <p>
+                            Traditional meets modern
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="kurtisGrid"
+                class="product-grid">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             CO-ORD SETS
+        ================================ -->
+
+        <section class="category-section">
+
+            <div class="category-header">
+
+                <div class="category-title">
+
+                    <div class="icon">✨</div>
+
+                    <div>
+
+                        <h2>Co-Ord Sets</h2>
+
+                        <p>
+                            Perfectly matched outfits
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="coordGrid"
+                class="product-grid">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             DRESSES
+        ================================ -->
+
+        <section class="category-section">
+
+            <div class="category-header">
+
+                <div class="category-title">
+
+                    <div class="icon">👗</div>
+
+                    <div>
+
+                        <h2>Dresses</h2>
+
+                        <p>
+                            Beautiful occasion wear
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="dressesGrid"
+                class="product-grid">
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            SHOP<span>IFY</span>
+        </div>
+
+        <p>
+            © 2026 SHOPIFY Fashion Store.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        /* PRODUCT DATA */
+
+        const products = [
+
+            /* TOPS */
+
+            {
+                id: "TOP001",
+                name: "Elegant Casual Top",
+                category: "tops",
+                price: 899,
+                oldPrice: 1199,
+                image: "👚"
+            },
+
+            {
+                id: "TOP002",
+                name: "Floral Print Top",
+                category: "tops",
+                price: 799,
+                oldPrice: 999,
+                image: "🌸"
+            },
+
+            {
+                id: "TOP003",
+                name: "Classic White Top",
+                category: "tops",
+                price: 699,
+                oldPrice: 899,
+                image: "🤍"
+            },
+
+            {
+                id: "TOP004",
+                name: "Premium Black Top",
+                category: "tops",
+                price: 999,
+                oldPrice: 1299,
+                image: "🖤"
+            },
+
+            {
+                id: "TOP005",
+                name: "Summer Cotton Top",
+                category: "tops",
+                price: 749,
+                oldPrice: 949,
+                image: "🌼"
+            },
+
+            {
+                id: "TOP006",
+                name: "Elegant Party Top",
+                category: "tops",
+                price: 1099,
+                oldPrice: 1399,
+                image: "✨"
+            },
+
+
+            /* KURTIS */
+
+            {
+                id: "KUR001",
+                name: "Elegant Floral Kurti",
+                category: "kurtis",
+                price: 1199,
+                oldPrice: 1499,
+                image: "🌸"
+            },
+
+            {
+                id: "KUR002",
+                name: "Designer Cotton Kurti",
+                category: "kurtis",
+                price: 999,
+                oldPrice: 1299,
+                image: "👗"
+            },
+
+            {
+                id: "KUR003",
+                name: "Traditional Printed Kurti",
+                category: "kurtis",
+                price: 1299,
+                oldPrice: 1599,
+                image: "🌺"
+            },
+
+            {
+                id: "KUR004",
+                name: "Pastel Daily Wear Kurti",
+                category: "kurtis",
+                price: 899,
+                oldPrice: 1199,
+                image: "🌷"
+            },
+
+            {
+                id: "KUR005",
+                name: "Festive Embroidered Kurti",
+                category: "kurtis",
+                price: 1499,
+                oldPrice: 1899,
+                image: "✨"
+            },
+
+            {
+                id: "KUR006",
+                name: "Modern Straight Kurti",
+                category: "kurtis",
+                price: 1099,
+                oldPrice: 1399,
+                image: "💐"
+            },
+
+
+            /* CO-ORD */
+
+            {
+                id: "COR001",
+                name: "Premium Pink Co-Ord Set",
+                category: "co-ord",
+                price: 1699,
+                oldPrice: 2199,
+                image: "🌷"
+            },
+
+            {
+                id: "COR002",
+                name: "Elegant Beige Co-Ord Set",
+                category: "co-ord",
+                price: 1799,
+                oldPrice: 2299,
+                image: "🤎"
+            },
+
+            {
+                id: "COR003",
+                name: "Summer Floral Co-Ord Set",
+                category: "co-ord",
+                price: 1599,
+                oldPrice: 1999,
+                image: "🌸"
+            },
+
+            {
+                id: "COR004",
+                name: "Classic Black Co-Ord Set",
+                category: "co-ord",
+                price: 1899,
+                oldPrice: 2399,
+                image: "🖤"
+            },
+
+            {
+                id: "COR005",
+                name: "Pastel Green Co-Ord Set",
+                category: "co-ord",
+                price: 1699,
+                oldPrice: 2199,
+                image: "🌿"
+            },
+
+            {
+                id: "COR006",
+                name: "Casual Cotton Co-Ord Set",
+                category: "co-ord",
+                price: 1499,
+                oldPrice: 1899,
+                image: "🌼"
+            },
+
+
+            /* DRESSES */
+
+            {
+                id: "DRS001",
+                name: "Elegant Floral Dress",
+                category: "dresses",
+                price: 1499,
+                oldPrice: 1999,
+                image: "👗",
+                sale: "25% OFF"
+            },
+
+            {
+                id: "DRS002",
+                name: "Classic Summer Dress",
+                category: "dresses",
+                price: 1299,
+                oldPrice: 1699,
+                image: "🌸"
+            },
+
+            {
+                id: "DRS003",
+                name: "Elegant Party Dress",
+                category: "dresses",
+                price: 1399,
+                oldPrice: 1799,
+                image: "✨",
+                sale: "22% OFF"
+            },
+
+            {
+                id: "DRS004",
+                name: "Pastel Midi Dress",
+                category: "dresses",
+                price: 1599,
+                oldPrice: 1999,
+                image: "🌷"
+            },
+
+            {
+                id: "DRS005",
+                name: "Premium Evening Dress",
+                category: "dresses",
+                price: 1599,
+                oldPrice: 2199,
+                image: "💜",
+                sale: "27% OFF"
+            },
+
+            {
+                id: "DRS006",
+                name: "Floral Maxi Dress",
+                category: "dresses",
+                price: 1499,
+                oldPrice: 1899,
+                image: "🌺"
+            },
+
+            {
+                id: "DRS007",
+                name: "Chic Casual Dress",
+                category: "dresses",
+                price: 1399,
+                oldPrice: 1899,
+                image: "🌼",
+                sale: "26% OFF"
+            },
+
+            {
+                id: "DRS008",
+                name: "Elegant White Dress",
+                category: "dresses",
+                price: 1699,
+                oldPrice: 2099,
+                image: "🤍"
+            },
+
+            {
+                id: "DRS009",
+                name: "Luxury Party Dress",
+                category: "dresses",
+                price: 1799,
+                oldPrice: 2399,
+                image: "💃",
+                sale: "25% OFF"
+            },
+
+            {
+                id: "DRS010",
+                name: "Summer Floral Maxi",
+                category: "dresses",
+                price: 1399,
+                oldPrice: 1799,
+                image: "🌻"
+            }
+
+        ];
+
+
+
+        /* CREATE PRODUCT CARD */
+
+        function createProductCard(product) {
+
+            return `
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        ${
+                            product.sale
+                            ?
+                            `<span class="sale-badge">
+                                ${product.sale}
+                            </span>`
+                            :
+                            ""
+                        }
+
+                        <div class="product-emoji">
+                            ${product.image}
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            ${product.category}
+                        </p>
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+
+                        <div class="product-price">
+
+                            <strong>
+                                ₹${product.price.toLocaleString("en-IN")}
+                            </strong>
+
+                            <del>
+                                ₹${product.oldPrice.toLocaleString("en-IN")}
+                            </del>
+
+                        </div>
+
+
+                        <div class="product-actions">
+
+                            <button
+                                class="view-btn"
+                                onclick="viewProduct('${product.id}')">
+
+                                View
+
+                            </button>
+
+
+                            <button
+                                class="cart-btn"
+                                onclick="addToCart('${product.id}')">
+
+                                Add to Cart
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        /* DISPLAY ALL SECTIONS */
+
+        function displayProducts(list) {
+
+            const tops =
+                document.getElementById("topsGrid");
+
+            const kurtis =
+                document.getElementById("kurtisGrid");
+
+            const coord =
+                document.getElementById("coordGrid");
+
+            const dresses =
+                document.getElementById("dressesGrid");
+
+
+            tops.innerHTML = "";
+
+            kurtis.innerHTML = "";
+
+            coord.innerHTML = "";
+
+            dresses.innerHTML = "";
+
+
+            list.forEach(function(product) {
+
+                const card =
+                    createProductCard(product);
+
+
+                if (product.category === "tops") {
+
+                    tops.innerHTML += card;
+
+                }
+
+                else if (product.category === "kurtis") {
+
+                    kurtis.innerHTML += card;
+
+                }
+
+                else if (product.category === "co-ord") {
+
+                    coord.innerHTML += card;
+
+                }
+
+                else if (product.category === "dresses") {
+
+                    dresses.innerHTML += card;
+
+                }
+
+            });
+
+        }
+
+
+
+        /* SEARCH */
+
+        function searchProducts() {
+
+            const search =
+                document
+                    .getElementById("searchInput")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const filtered =
+                products.filter(function(product) {
+
+                    return (
+
+                        product.name
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        product.category
+                            .toLowerCase()
+                            .includes(search)
+
+                    );
+
+                });
+
+
+            displayProducts(filtered);
+
+        }
+
+
+
+        /* VIEW PRODUCT */
+
+        function viewProduct(id) {
+
+            const product =
+                products.find(function(item) {
+
+                    return item.id === id;
+
+                });
+
+
+            if (!product) {
+
+                alert("Product not found.");
+
+                return;
+
+            }
+
+
+            localStorage.setItem(
+                "selectedProduct",
+                JSON.stringify(product)
+            );
+
+
+            window.location.href =
+                "/product-details";
+
+        }
+
+
+
+       function addToCart(id) {
+
+    const currentUser =
+        localStorage.getItem("currentUser");
+
+    if (!currentUser) {
+        alert("Please login first.");
+        window.location.href = "/login";
+        return;
+    }
+
+    const product =
+        products.find(function(item) {
+            return item.id === id;
+        });
+
+    if (!product) {
+        alert("Product not found.");
+        return;
+    }
+
+    /* SAME CART KEY USED EVERYWHERE */
+
+    const cartKey =
+        "cart_" + currentUser;
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem(cartKey)
+        ) || [];
+
+    /* CHECK IF PRODUCT ALREADY EXISTS */
+
+    const existing =
+        cart.find(function(item) {
+            return item.id === id;
+        });
+
+    if (existing) {
+
+        existing.quantity =
+            (Number(existing.quantity) || 1) + 1;
+
+    } else {
+
+        cart.push({
+
+ 
+           id: product.id,
+
+            name: product.name,
+
+            category: product.category,
+
+            price: Number(product.price),
+
+            oldPrice:
+                Number(product.oldPrice) || 0,
+
+            image: product.image,
+
+            sale: product.sale || "",
+
+            quantity: 1
+
+        });
+
+    }
+
+    /* SAVE CART */
+
+    localStorage.setItem(
+        cartKey,
+        JSON.stringify(cart)
+    );
+
+    alert(
+        product.name +
+        " added to your cart!"
+    );
+
+}
+
+
+
+
+        /* LOGOUT */
+
+        function logout() {
+
+            localStorage.removeItem(
+                "isLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "userEmail"
+            );
+
+            localStorage.removeItem(
+                "userName"
+            );
+
+
+            window.location.href =
+                "/login";
+
+        }
+
+
+
+        /* LOAD */
+
+        displayProducts(products);
+
+    </script>
+
+
+</body>
+
+</html>

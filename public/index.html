@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SHOPIFY | Fashion Store</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+    <style>
+
+        /* ================================
+           HOME PAGE
+        ================================= */
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* HEADER */
+
+        .home-header {
+            background: rgba(255,255,255,0.96);
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .home-logo {
+            font-family: "Playfair Display", serif;
+            font-size: 29px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .home-logo span {
+            color: #d85c8a;
+        }
+
+        .home-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .home-nav a {
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .home-nav a:hover {
+            color: #d85c8a;
+        }
+
+        .admin-link {
+            color: #b84f9a !important;
+            font-weight: 600 !important;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #d85c8a;
+            color: white;
+            padding: 9px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .logout-btn:hover {
+            background: #bd4776;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff1f6,
+                    #f5edff,
+                    #fff8ed
+                );
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-small {
+            color: #d85c8a;
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 65px;
+            line-height: 1.1;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #d85c8a;
+        }
+
+        .hero p {
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .shop-btn {
+            background: #d85c8a;
+            color: white;
+        }
+
+        .explore-btn {
+            border: 1px solid #d85c8a;
+            color: #d85c8a;
+            background: white;
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            text-align: center;
+            padding: 50px 20px 10px;
+        }
+
+        .welcome h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .welcome p {
+            color: #888;
+        }
+
+        /* CATEGORIES */
+
+        .categories {
+            padding: 50px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 38px;
+        }
+
+        .section-title p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            min-height: 230px;
+            border-radius: 18px;
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(
+                135deg,
+                #d85c8a,
+                #b84f9a
+            );
+            transition: 0.3s;
+        }
+
+        .category-card:nth-child(2) {
+            background: linear-gradient(
+                135deg,
+                #9b6cc5,
+                #d85c8a
+            );
+        }
+
+        .category-card:nth-child(3) {
+            background: linear-gradient(
+                135deg,
+                #e49a76,
+                #d85c8a
+            );
+        }
+
+        .category-card:nth-child(4) {
+            background: linear-gradient(
+                135deg,
+                #b84f9a,
+                #7350b8
+            );
+        }
+
+        .category-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            margin-bottom: 5px;
+        }
+
+        .category-card p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* FEATURES */
+
+        .features {
+            padding: 60px 6%;
+            background: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .feature-icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #888;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #292329;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            color: #bbb;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 900px) {
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+        }
+
+        @media(max-width: 650px) {
+
+            .home-header {
+                padding: 15px 4%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .home-nav {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .home-nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- LOGIN PROTECTION -->
+
+    <script>
+
+        if (
+            localStorage.getItem("isLoggedIn") !== "true" ||
+            !localStorage.getItem("currentUser")
+        ) {
+
+            window.location.href = "/login.html";
+
+        }
+
+    </script>
+
+
+    <!-- HEADER -->
+
+    <header class="home-header">
+
+        <div class="home-logo">
+
+            SHOP<span>IFY</span>
+
+        </div>
+
+
+        <nav class="home-nav">
+
+            <a href="/home.html">
+                Home
+            </a>
+
+            <a href="/products.html">
+                Products
+            </a>
+
+            <a href="/cart.html">
+                🛒 Cart
+            </a>
+
+            <!-- ADMIN PAGE -->
+
+            <a
+                href="/admin.html"
+                class="admin-link"
+            >
+                Admin
+            </a>
+
+            <button
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                NEW COLLECTION 2026
+            </div>
+
+            <h1>
+                STYLE THAT
+                <span>FEELS LIKE YOU</span>
+            </h1>
+
+            <p>
+                Discover elegant fashion pieces designed
+                to make every moment feel special.
+                Explore our latest collection of stylish
