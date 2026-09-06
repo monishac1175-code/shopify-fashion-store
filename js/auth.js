@@ -318,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 /* GO TO LOGIN */
 
                 window.location.href =
-                    "/login.html";
+                    "login.html";
 
             }
         );
